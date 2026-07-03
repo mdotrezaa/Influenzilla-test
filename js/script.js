@@ -98,3 +98,17 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-gtm]").forEach(link => {
+        link.addEventListener("click", () => {
+            gtag("event", "menu_click", {
+                menu_name: link.dataset.gtm,
+                menu_text: link.textContent.trim(),
+                page_location: window.location.href
+            });
+
+            console.log("Tracked:", link.dataset.gtm);
+        });
+    });
+});
